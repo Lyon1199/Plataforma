@@ -94,4 +94,23 @@ async function pagar() {
   }
 }
 
+// ...tu código anterior...
+
+function getTotal() {
+  return total;
+}
+
+function resetTotal() {
+  total = 0;
+}
+
+module.exports = {
+  agregarACarrito,
+  carrito,
+  productos,
+  getTotal,
+  resetTotal
+};
+
+
 renderProductos();

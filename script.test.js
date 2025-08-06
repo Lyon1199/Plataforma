@@ -9,7 +9,7 @@ const {
   resetTotal
 } = require('./script');
 
-describe('Ponce Motors - Tests de carrito de autos', () => {
+describe('SaludPlus Medica - Tests de carrito de productos médicos', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <ul id="lista-carrito"></ul>
@@ -19,30 +19,27 @@ describe('Ponce Motors - Tests de carrito de autos', () => {
     resetTotal();
   });
 
-  test('agrega un vehículo al carrito', () => {
-    agregarACarrito(productos[0]); // Mercedes Benz clase C
+  test('agrega un producto al carrito', () => {
+    agregarACarrito(productos[0]); // Guantes de Nitrilo
     expect(carrito.length).toBe(1);
-    expect(carrito[0].nombre).toBe("Mercedes Benz clase C");
-    expect(getTotal()).toBeCloseTo(65000.00);
+    expect(carrito[0].nombre).toBe("Guantes de Nitrilo (Caja 100)");
+    expect(getTotal()).toBeCloseTo(12.50);
   });
 
-  test('actualiza el DOM correctamente con el auto agregado', () => {
-    agregarACarrito(productos[1]); // Audi R8
-
+  test('actualiza el DOM correctamente con el producto agregado', () => {
+    agregarACarrito(productos[1]); // Mascarilla KN95
     const lista = document.getElementById("lista-carrito");
     expect(lista).not.toBeNull();
     expect(lista.children.length).toBe(1);
-    expect(lista.textContent).toContain("Audi R8");
-
+    expect(lista.textContent).toContain("Mascarilla KN95");
     const totalTexto = document.getElementById("total").textContent;
-    expect(totalTexto).toBe("120000.00");
+    expect(totalTexto).toBe("1.80");
   });
 
-  test('agrega múltiples autos y calcula total', () => {
-    agregarACarrito(productos[2]); // Eclipse Cross
-    agregarACarrito(productos[5]); // Ford Raptor
-
+  test('agrega múltiples productos y calcula total', () => {
+    agregarACarrito(productos[2]); // Tensiometro Digital
+    agregarACarrito(productos[5]); // Silla de Ruedas
     expect(carrito.length).toBe(2);
-    expect(getTotal()).toBeCloseTo(30000.00 + 85000.50);
+    expect(getTotal()).toBeCloseTo(35.00 + 150.00);
   });
 });
